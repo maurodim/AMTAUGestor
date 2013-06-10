@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCobranzasPorFechas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="21"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#0000FF"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#0000FF"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#0000FF"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#0000FF"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1"/>
+	<parameter name="numeroSolicitud" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from amtau_socios where numeroSolicitud=$P{numeroSolicitud}]]>
+	</queryString>
+	<field name="numeroSolicitud" class="java.lang.Long"/>
+	<field name="numeroCliente" class="java.lang.Float"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="fechaDeAlta" class="java.sql.Date"/>
+	<field name="numeroDocumento" class="java.lang.String"/>
+	<field name="fechaDeNacimiento" class="java.sql.Date"/>
+	<field name="domicilioParticular" class="java.lang.String"/>
+	<field name="localidad" class="java.lang.String"/>
+	<field name="codigoPostal" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="domicilioCobranza" class="java.lang.String"/>
+	<field name="telefonoCobranza" class="java.lang.String"/>
+	<field name="estadoDeSalud" class="java.lang.String"/>
+	<field name="numeroDePlan" class="java.lang.Integer"/>
+	<field name="numeroVendedor" class="java.lang.Integer"/>
+	<field name="numeroCobrador" class="java.lang.Integer"/>
+	<field name="cantidadAdherentes" class="java.lang.Integer"/>
+	<field name="numeroTitular" class="java.lang.Integer"/>
+	<field name="tipoCondicion" class="java.lang.Integer"/>
+	<field name="condicion" class="java.lang.String"/>
+	<field name="parentescoTitular" class="java.lang.String"/>
+	<field name="fechaCobro" class="java.sql.Date"/>
+	<field name="medicinaIntegral" class="java.lang.Integer"/>
+	<field name="cantiMedicinaIntegral" class="java.lang.Integer"/>
+	<field name="carenciaMedicinaIntegral" class="java.lang.String"/>
+	<field name="velatorios" class="java.lang.Integer"/>
+	<field name="cantidadVelatorios" class="java.lang.Integer"/>
+	<field name="carenciaVelatorios" class="java.lang.String"/>
+	<field name="sepelio" class="java.lang.Integer"/>
+	<field name="cantidadSepelio" class="java.lang.Integer"/>
+	<field name="carenciaSepelio" class="java.lang.String"/>
+	<field name="emergencias" class="java.lang.Integer"/>
+	<field name="cantidadEmergencias" class="java.lang.Integer"/>
+	<field name="carenciaEmergencias" class="java.lang.String"/>
+	<field name="condicionSocio" class="java.lang.Integer"/>
+	<field name="fechaModificacion" class="java.sql.Date"/>
+	<field name="usuarioModificador" class="java.lang.Integer"/>
+	<field name="montoACobrar" class="java.lang.Float"/>
+	<field name="fechaBaja" class="java.sql.Date"/>
+	<field name="motivoBaja" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="liquidada" class="java.lang.Integer"/>
+	<field name="fechaLiquidacion" class="java.sql.Date"/>
+	<field name="numeroLiquidacion" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="100" y="0" width="437" height="48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[ASOCIACION MUTUAL TRABAJADORES AUTONOMOS UNIDOS DE SANTA FE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="48" width="437" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Matrícula N° 1343 I.N.A.M.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="70" width="437" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Francia 4133 Tel: 4520501 - 4530916 C.P.: 3000 SANTA FE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="336" y="0" width="201" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Solicitud N° "+$F{numeroSolicitud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="20" width="201" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Santa Fe, "+$F{fechaDeAlta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroDocumento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[fechaDeNacimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="85">
+			<staticText>
+				<reportElement x="0" y="0" width="553" height="79"/>
+				<textElement/>
+				<text><![CDATA[SEÑOR PRESIDENTE A.M.T.A.U. S / D
+Referencias : Solicitar Ingreso Socio Adherente.-
+			El que suscribe se dirige al Sr. Presidente y Comisión Directiva para solicitar la incorporación como SOCIO ADHERENTE declarando conocer y aceptar los Estatutos Sociales y acatar las resoluciones de Comision Directiva y Asambleas, a tal efecto abonaré como cuota mensual la suma de pesos Cinco ($5,00), detallando a continuación mis datos personales:]]></text>
+			</staticText>
+		</band>
+		<band height="71">
+			<textField>
+				<reportElement x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["APELLIDO Y NOMBRES :"+$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="204" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NUMERO DE DOCUMENTO :"+$F{numeroDocumento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="152" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["FECHA DE NACIMIENTO :"+$F{fechaDeNacimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50"/>
+		<band height="50"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

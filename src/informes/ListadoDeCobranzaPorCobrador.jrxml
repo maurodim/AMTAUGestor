@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaDesde" class="java.lang.String"/>
+	<parameter name="fechaHasta" class="java.lang.String"/>
+	<parameter name="numeroCobrador" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from amtau_cobranza where fechaCobranza between $P{fechaDesde} and $P{fechaHasta} and numeroCobrador=$P{numeroCobrador}]]>
+	</queryString>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="numeroCobrador" class="java.lang.Integer"/>
+	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="montoCobrado" class="java.lang.Float"/>
+	<field name="montoACobrar" class="java.lang.Float"/>
+	<field name="fechaCobranza" class="java.sql.Date"/>
+	<field name="numeroDePlan" class="java.lang.Integer"/>
+	<field name="cuotaNumero" class="java.lang.String"/>
+	<field name="reciboNumero" class="java.lang.Integer"/>
+	<field name="liquidada" class="java.lang.Integer"/>
+	<field name="fechaLiquidacion" class="java.sql.Date"/>
+	<field name="numeroLiquidacion" class="java.lang.Integer"/>
+	<variable name="totalCobranza" class="java.lang.String" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="545" height="23"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Listado de Cobranzas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroSocio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="3" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoCobrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="3" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoACobrar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="3" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[fechaCobranza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="3" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[cuotaNumero]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoCobrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoACobrar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaCobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cuotaNumero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

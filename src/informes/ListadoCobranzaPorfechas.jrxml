@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCobranzaPorfechas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaDesde" class="java.lang.String"/>
+	<parameter name="fechaHasta" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from amtau_cobranza where fechaCobranza between  $P{fechaDesde} and $P{fechaHasta}]]>
+	</queryString>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="numeroCobrador" class="java.lang.Integer"/>
+	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="montoCobrado" class="java.lang.Float"/>
+	<field name="montoACobrar" class="java.lang.Float"/>
+	<field name="fechaCobranza" class="java.sql.Date"/>
+	<field name="numeroDePlan" class="java.lang.Integer"/>
+	<field name="cuotaNumero" class="java.lang.String"/>
+	<field name="reciboNumero" class="java.lang.Integer"/>
+	<field name="liquidada" class="java.lang.Integer"/>
+	<field name="fechaLiquidacion" class="java.sql.Date"/>
+	<field name="numeroLiquidacion" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="61"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASOCIACIÓN MUTUAL TRABAJADORES AUTÓNOMOS UNIDOS DE SANTA FE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="162" height="20"/>
+				<textElement/>
+				<text><![CDATA[Listado de Cobranzas por fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="172" y="20" width="165" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Fecha Hasta :"+$P{fechaHasta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="356" y="0" width="199" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["fecha Impresion :"+new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Fecha Desde :"+$P{fechaDesde}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cobrador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[numeroSocio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Cobranza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoCobrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoACobrar]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroCobrador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="2" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="2" width="100" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaCobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoCobrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoACobrar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoSociosPorCobrador" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numeroCobrador" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select amtau_socios.apellido,amtau_socios.numeroSolicitud,amtau_socios.montoACobrar,amtau_socios.domicilioCobranza,amtau_socios.telefonoCobranza,amtau_socios.telefono,amtau_socios.domicilioParticular,(select amtau_cobradores.nombre from amtau_cobradores where numero=amtau_socios.numeroCobrador) from amtau_socios where numeroCobrador=$P{numeroCobrador} and tipoCondicion=1 order by apellido]]>
+	</queryString>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="numeroSolicitud" class="java.lang.Long"/>
+	<field name="montoACobrar" class="java.lang.Float"/>
+	<field name="domicilioCobranza" class="java.lang.String"/>
+	<field name="telefonoCobranza" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="domicilioParticular" class="java.lang.String"/>
+	<field name="(select amtau_cobradores.nombre from amtau_cobradores where numero=amtau_socios.numeroCobrador)" class="java.lang.String"/>
+	<variable name="sumaCobranza" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoACobrar}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="481" height="19"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Socios Por Cobrador - AMTAU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="326" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Cobrador :"+$F{(select amtau_cobradores.nombre from amtau_cobradores where numero=amtau_socios.numeroCobrador)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="326" y="0" width="229" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroSolicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[domicilioCobranza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[telefonoCobranza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="5" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoACobrar]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroSolicitud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{domicilioCobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{telefonoCobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoACobrar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{sumaCobranza}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
