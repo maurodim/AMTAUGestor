@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionRealDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<parameter name="fechaDesde" class="java.util.Date"/>
+	<parameter name="fechaHasta" class="java.util.Date"/>
+	<parameter name="cta Social" class="java.lang.Integer"/>
+	<parameter name="sepelio" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select (select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente),amtau_cobranza.montoCobrado,(5)as seguro,(12)as sepelio,(amtau_cobranza.montoCobrado - 17) as ayuda,amtau_cobranza.numeroCliente,amtau_cobranza.cuotaNumero,amtau_cobranza.fechaCobranza from amtau_cobranza where fechaCobranza between $P{fechaDesde} and $P{fechaHasta} order by amtau_cobranza.fechaCobranza asc]]>
+	</queryString>
+	<field name="(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)" class="java.lang.String"/>
+	<field name="montoCobrado" class="java.lang.Float"/>
+	<field name="seguro" class="java.lang.Long"/>
+	<field name="sepelio" class="java.lang.Long"/>
+	<field name="ayuda" class="java.lang.Double"/>
+	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="cuotaNumero" class="java.lang.String"/>
+	<field name="fechaCobranza" class="java.sql.Date"/>
+	<variable name="TotalCobrado" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoCobrado}]]></variableExpression>
+	</variable>
+	<variable name="TotalSeguro" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{seguro}]]></variableExpression>
+	</variable>
+	<variable name="TotalSepelio" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{sepelio}]]></variableExpression>
+	</variable>
+	<variable name="TotalSalud" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{ayuda}]]></variableExpression>
+	</variable>
+	<variable name="social" class="java.lang.Integer">
+		<variableExpression><![CDATA["5"]]></variableExpression>
+	</variable>
+	<variable name="sepelio" class="java.lang.Integer">
+		<variableExpression><![CDATA["12"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="15" width="200" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fecha Desde :"+$P{fechaDesde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="15" width="200" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Fecha Hasta :"+$P{fechaHasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Socio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="2" width="51" height="20"/>
+				<textElement/>
+				<text><![CDATA[montoCobrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[sepelio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuota Salud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="2" width="55" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuota]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="0" width="64" height="20"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="149" y="2" width="51" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{montoCobrado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="200" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{seguro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="300" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sepelio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="400" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ayuda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="36" height="20"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="2" width="55" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaCobranza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="2" width="49" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cuotaNumero}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{TotalCobrado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{TotalSeguro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{TotalSepelio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="400" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{TotalSalud}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
