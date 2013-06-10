@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReimpresionRecibosDePago" language="groovy" columnCount="6" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="92" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="234"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cuotaN" class="java.lang.String"/>
+	<parameter name="numSocio" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from amtau_socios where numeroSolicitud=$P{numSocio} order by tipoCondicion]]>
+	</queryString>
+	<field name="numeroSolicitud" class="java.lang.Integer"/>
+	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="fechaDeAlta" class="java.sql.Date"/>
+	<field name="numeroDocumento" class="java.lang.String"/>
+	<field name="fechaDeNacimiento" class="java.sql.Date"/>
+	<field name="domicilioParticular" class="java.lang.String"/>
+	<field name="localidad" class="java.lang.String"/>
+	<field name="codigoPostal" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="domicilioCobranza" class="java.lang.String"/>
+	<field name="telefonoCobranza" class="java.lang.String"/>
+	<field name="estadoDeSalud" class="java.lang.String"/>
+	<field name="numeroDePlan" class="java.lang.Integer"/>
+	<field name="numeroVendedor" class="java.lang.Integer"/>
+	<field name="numeroCobrador" class="java.lang.Integer"/>
+	<field name="cantidadAdherentes" class="java.lang.Integer"/>
+	<field name="numeroTitular" class="java.lang.Integer"/>
+	<field name="tipoCondicion" class="java.lang.Integer"/>
+	<field name="condicion" class="java.lang.String"/>
+	<field name="parentescoTitular" class="java.lang.String"/>
+	<field name="fechaCobro" class="java.sql.Date"/>
+	<field name="medicinaIntegral" class="java.lang.Integer"/>
+	<field name="cantiMedicinaIntegral" class="java.lang.Integer"/>
+	<field name="carenciaMedicinaIntegral" class="java.lang.String"/>
+	<field name="velatorios" class="java.lang.Integer"/>
+	<field name="cantidadVelatorios" class="java.lang.Integer"/>
+	<field name="carenciaVelatorios" class="java.lang.String"/>
+	<field name="sepelio" class="java.lang.Integer"/>
+	<field name="cantidadSepelio" class="java.lang.Integer"/>
+	<field name="carenciaSepelio" class="java.lang.String"/>
+	<field name="emergencias" class="java.lang.Integer"/>
+	<field name="cantidadEmergencias" class="java.lang.Integer"/>
+	<field name="carenciaEmergencias" class="java.lang.String"/>
+	<field name="condicionSocio" class="java.lang.Integer"/>
+	<field name="fechaModificacion" class="java.sql.Date"/>
+	<field name="usuarioModificador" class="java.lang.Integer"/>
+	<field name="montoACobrar" class="java.lang.Float"/>
+	<field name="fechaBaja" class="java.sql.Date"/>
+	<field name="motivoBaja" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="liquidada" class="java.lang.Integer"/>
+	<field name="fechaLiquidacion" class="java.sql.Date"/>
+	<field name="numeroLiquidacion" class="java.lang.Integer"/>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="65" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Socio Nº:"+$F{numeroSolicitud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="12" width="91" height="20"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Apellido :"+$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="91" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Monto :"+$F{montoACobrar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="44" width="91" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cuota :"+$P{cuotaN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="0" width="26" height="12"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["-"+$F{tipoCondicion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

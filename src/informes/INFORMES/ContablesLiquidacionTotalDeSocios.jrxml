@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionTotalDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaDesde" class="java.util.Date"/>
+	<parameter name="fechaHasta" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select (select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente),amtau_cobranza.montoACobrar * 0.20 as cuotaSocial,amtau_cobranza.montoAcobrar * 0.60 as cuotaSalud from amtau_cobranza where fechaCobranza between $P{fechaDesde} and $P{fechaHasta}]]>
+	</queryString>
+	<field name="(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)" class="java.lang.String"/>
+	<field name="cuotaSocial" class="java.lang.Double"/>
+	<field name="cuotaSalud" class="java.lang.Double"/>
+	<variable name="totalSeguro" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{cuotaSocial}]]></variableExpression>
+	</variable>
+	<variable name="totalSocial" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{cuotaSocial}]]></variableExpression>
+	</variable>
+	<variable name="totalSalud" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{cuotaSalud}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Socio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuota Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuota Sepelio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuota Salud]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cuotaSocial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cuotaSocial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cuotaSalud}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{totalSeguro}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{totalSocial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{totalSalud}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
