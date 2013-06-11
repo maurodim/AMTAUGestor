@@ -46,7 +46,7 @@ public class AMTAUGestorApp extends SingleFrameApplication {
         ArrayList listado=new ArrayList();
         pr.cargarPlanes();
         listado=pr.listar();
-        ps.actualizarListado(listado);
+        //ps.actualizarListado(listado);
         Procedimientos pc=new Cobradores();
         listado=pc.listar();
         pc.actualizarListado(listado);
