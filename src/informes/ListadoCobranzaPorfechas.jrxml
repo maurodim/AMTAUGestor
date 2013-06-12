@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCobranzaPorfechas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCobranzaPorfechas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd60ff08-6b99-4e37-b781-3082449069b7">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="32"/>
 	<parameter name="fechaDesde" class="java.lang.String"/>
 	<parameter name="fechaHasta" class="java.lang.String"/>
 	<queryString>
@@ -26,7 +26,7 @@
 	<title>
 		<band height="62" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="61"/>
+				<reportElement uuid="c7b4b0c2-3a3f-407e-b6f4-5420f3a8f27d" x="0" y="0" width="555" height="61"/>
 				<textElement>
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -37,22 +37,22 @@
 	<pageHeader>
 		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="162" height="20"/>
+				<reportElement uuid="22b333f4-06d2-4c61-9237-62d48cf473e8" x="0" y="0" width="162" height="20"/>
 				<textElement/>
 				<text><![CDATA[Listado de Cobranzas por fecha]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="172" y="20" width="165" height="19"/>
+				<reportElement uuid="7e44554a-1ced-406a-acd8-3133af5c7bb6" x="172" y="20" width="165" height="19"/>
 				<textElement/>
 				<textFieldExpression><![CDATA["Fecha Hasta :"+$P{fechaHasta}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="356" y="0" width="199" height="20"/>
+				<reportElement uuid="8c42f570-df96-4422-b6d7-a1735bad8bc6" x="356" y="0" width="199" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA["fecha Impresion :"+new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="172" y="0" width="165" height="20"/>
+				<reportElement uuid="e6501877-ca7f-4478-9869-db885c8645c4" x="172" y="0" width="165" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA["Fecha Desde :"+$P{fechaDesde}]]></textFieldExpression>
 			</textField>
@@ -61,33 +61,33 @@
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20"/>
+				<reportElement uuid="4340b311-89a9-409f-a558-7368abcc4f90" x="0" y="0" width="100" height="20"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cobrador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="0" width="100" height="20"/>
+				<reportElement uuid="352a8bfb-2e72-42cc-94a4-b72b3ee1dccb" x="100" y="0" width="100" height="20"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[numeroSocio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="0" width="100" height="20"/>
+				<reportElement uuid="288c894f-c017-4b85-ba44-3656668f19f8" x="455" y="0" width="100" height="20"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha Cobranza]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="0" width="100" height="20"/>
+				<reportElement uuid="1082527f-8bc6-4956-b249-d23ca18c98a5" x="200" y="0" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[montoCobrado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="0" width="100" height="20"/>
+				<reportElement uuid="fed604dc-d6c8-46eb-874c-10a28660114f" x="300" y="0" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[montoACobrar]]></text>
 			</staticText>
@@ -96,27 +96,27 @@
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20"/>
+				<reportElement uuid="93062489-5f61-4887-a543-e4c723fa22db" x="0" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{numeroCobrador}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="2" width="100" height="18"/>
+				<reportElement uuid="df086748-d4ed-43c7-bd18-1f96baf3ec97" x="100" y="2" width="100" height="18"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="2" width="100" height="18"/>
+				<reportElement uuid="ea32ac8f-f4c4-48ea-abc4-29434b08c61e" x="455" y="2" width="100" height="18"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fechaCobranza}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="2" width="100" height="20"/>
+				<reportElement uuid="ae9dd4e8-4e7a-438e-9646-671096be4718" x="200" y="2" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{montoCobrado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="300" y="2" width="100" height="20"/>
+				<reportElement uuid="fc37e4df-5086-4fe4-93c6-b5117fa78ea8" x="300" y="2" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{montoACobrar}]]></textFieldExpression>
 			</textField>
