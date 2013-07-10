@@ -108,7 +108,7 @@ public class InLiqGral {
 	public void GenerarReporteCobranzaPorFechas() throws ClassNotFoundException, SQLException, JRException, IOException{
 	Date fecha1=new Date();
        String fechaTitulo=String.valueOf(fecha1);
-       String master=System.getProperty("user.dir")+"//src//informes//ListadoCobranzaPorFechas.jasper";
+       String master=System.getProperty("user.dir")+"//src//informes//INFORMES//ContablesLiquidacionTotalDeSocios.jasper";
         String ruta=System.getProperty("user.dir")+"//src//informes//Listado de cobranzas por fechas.pdf";	
             Map fecha=new HashMap();
 		fecha.put("fechaDesde", this.fechaDesdeCobrador);
