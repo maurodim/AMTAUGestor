@@ -50,6 +50,9 @@ public class AMTAUGestorApp extends SingleFrameApplication {
         Procedimientos pc=new Cobradores();
         listado=pc.listar();
         pc.actualizarListado(listado);
-        launch(AMTAUGestorApp.class, args);
+        //launch(AMTAUGestorApp.class, args);
+        Inicio in=new Inicio();
+        in.setVisible(true);
+        in.pack();
     }
 }
