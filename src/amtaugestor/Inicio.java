@@ -4,8 +4,10 @@
  */
 package amtaugestor;
 
+import interfaces.LiqGralN;
 import interfaces.LiquidacionesN;
 import interfaces.ListadosSociosN;
+import interfaces.SolicitudesN;
 
 /**
  *
@@ -127,14 +129,14 @@ public class Inicio extends javax.swing.JFrame {
             lSocios.pack();    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            Solicitudes sol=new Solicitudes();
+            SolicitudesN sol=new SolicitudesN();
             this.jDesktopPane1.add(sol);
             sol.setVisible(true);
             sol.pack();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-            LiqGral gral=new LiqGral();
+            LiqGralN gral=new LiqGralN();
             this.jDesktopPane1.add(gral);
             gral.setVisible(true);
             gral.pack();
