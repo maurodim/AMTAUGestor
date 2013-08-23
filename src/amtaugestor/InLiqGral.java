@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -107,12 +111,22 @@ public class InLiqGral {
 	}
 	public void GenerarReporteCobranzaPorFechas() throws ClassNotFoundException, SQLException, JRException, IOException{
 	Date fecha1=new Date();
-       String fechaTitulo=String.valueOf(fecha1);
+        Date fecha2=new Date();
+       SimpleDateFormat fFecha=new SimpleDateFormat("yyyy-mm-dd");
+        String fechaTitulo=String.valueOf(fecha1);
        String master=System.getProperty("user.dir")+"//src//informes//INFORMES//ContablesLiquidacionTotalDeSocios.jasper";
         String ruta=System.getProperty("user.dir")+"//src//informes//Listado de cobranzas por fechas.pdf";	
-            Map fecha=new HashMap();
-		fecha.put("fechaDesde", this.fechaDesdeCobrador);
-		fecha.put("fechaHasta",this.fechaHastaCobrador);
+        try {
+            // tengo que pasar las fechas de string a date
+            fecha1=fFecha.parse(this.fechaDesdeCobrador);
+            fecha2=fFecha.parse(this.fechaHastaCobrador);
+        } catch (ParseException ex) {
+            Logger.getLogger(InLiqGral.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("fechas "+fecha1+" "+fecha2);   
+        Map fecha=new HashMap();
+		fecha.put("fechaDesde", fecha1);
+		fecha.put("fechaHasta",fecha2);
 		Coneccion con=new Coneccion();
 		Class.forName(con.getDriver());
 		Connection cnn=DriverManager.getConnection(con.getBaseDeDatos(),con.getUsuario(),con.getPass());

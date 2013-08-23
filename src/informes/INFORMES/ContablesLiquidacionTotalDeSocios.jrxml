@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionTotalDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionTotalDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6662ad20-4ce5-473b-95eb-03a53866df16">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -32,22 +32,22 @@
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="4" width="100" height="20"/>
+				<reportElement uuid="0020ba28-a5a2-43b3-aadf-d6736c05f143" x="0" y="4" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Socio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="4" width="100" height="20"/>
+				<reportElement uuid="6d17821b-3bfd-4eec-92af-0f6999f0680a" x="100" y="4" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Cuota Social]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="4" width="100" height="20"/>
+				<reportElement uuid="f4aec1b1-fc59-4e1d-94bd-96102d3dbafa" x="200" y="4" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Cuota Sepelio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="4" width="100" height="20"/>
+				<reportElement uuid="ed6d9f68-7415-428b-ad2d-cec094c25ba8" x="300" y="4" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Cuota Salud]]></text>
 			</staticText>
@@ -56,22 +56,22 @@
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="100" height="20"/>
+				<reportElement uuid="95e6e6f0-1d57-4a5c-b533-ffa5f827f3d4" x="0" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="100" y="0" width="100" height="20"/>
+				<reportElement uuid="ead36d3e-9563-49a3-a1ea-5bfd46ba4611" x="100" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{cuotaSocial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="200" y="0" width="100" height="20"/>
+				<reportElement uuid="371fd1d2-9af8-462d-bcfe-321b73922e27" x="200" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{cuotaSocial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="300" y="0" width="100" height="20"/>
+				<reportElement uuid="21bca3dc-41f7-4fa5-be7a-f9a1958a581d" x="300" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{cuotaSalud}]]></textFieldExpression>
 			</textField>
@@ -80,17 +80,17 @@
 	<columnFooter>
 		<band height="21" splitType="Stretch">
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="100" y="0" width="100" height="20"/>
+				<reportElement uuid="56df26bd-3440-4c0b-b0ea-22ada7916c72" x="100" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{totalSeguro}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="200" y="0" width="100" height="20"/>
+				<reportElement uuid="5f3e1ab5-045d-4430-ad9b-ad847d608b14" x="200" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{totalSocial}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="300" y="0" width="100" height="20"/>
+				<reportElement uuid="e97a2adc-403d-46b8-8701-2750817b5423" x="300" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{totalSalud}]]></textFieldExpression>
 			</textField>
@@ -99,7 +99,7 @@
 	<pageFooter>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="455" y="1" width="100" height="20"/>
+				<reportElement uuid="19fe2b32-e19f-43fa-8af4-d8ea8b3822a4" x="455" y="1" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
