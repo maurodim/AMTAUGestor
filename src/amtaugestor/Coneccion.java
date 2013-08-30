@@ -4,6 +4,7 @@
  */
 package amtaugestor;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,8 +37,23 @@ public class Coneccion {
     }
 
     public Connection getCp() throws ClassNotFoundException, SQLException {
-        Class.forName(driver);
-        Connection cp=DriverManager.getConnection(baseDeDatos,usuario,pass);
+        //Class.forName(driver);
+        //Connection cp=DriverManager.getConnection(baseDeDatos,usuario,pass);
+        MysqlDataSource dataSource=new MysqlDataSource();
+		try{
+			//Class.forName(driver1).newInstance();
+                    dataSource.setUser("root");
+                    dataSource.setDatabaseName("amtau");
+                    dataSource.setPassword("");
+                    dataSource.setServerName("localhost");
+                    cp=dataSource.getConnection();
+                 }catch(Exception ex){
+                    
+                String cod1=String.valueOf(ex);
+                
+			System.out.println("NO SE PUDO CONECTAR A LA BASE "+ex);
+		}
+
         return cp;
     }
     public void cerrarConeccion(Connection hd) throws SQLException{
