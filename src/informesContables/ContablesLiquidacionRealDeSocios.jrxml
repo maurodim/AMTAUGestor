@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionRealDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ContablesLiquidacionRealDeSocios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0777bab4-e590-4ce9-b0ce-3be50ebf7cdb">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.y" value="103"/>
 	<parameter name="fechaDesde" class="java.util.Date"/>
 	<parameter name="fechaHasta" class="java.util.Date"/>
 	<parameter name="cta Social" class="java.lang.Integer"/>
 	<parameter name="sepelio" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select (select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente),amtau_cobranza.montoCobrado,(5)as seguro,(12)as sepelio,(amtau_cobranza.montoCobrado - 17) as ayuda,amtau_cobranza.numeroCliente,amtau_cobranza.cuotaNumero,amtau_cobranza.fechaCobranza from amtau_cobranza where fechaCobranza between $P{fechaDesde} and $P{fechaHasta} order by amtau_cobranza.fechaCobranza asc]]>
+		<![CDATA[select (select amtau_socios.apellido from amtau_socios where amtau_socios.numeroSolicitud=amtau_cobranza.numeroCliente and amtau_socios.tipoCondicion=0 limit 0,1)as apellido,amtau_cobranza.montoCobrado,(5)as seguro,(12)as sepelio,(amtau_cobranza.montoCobrado - 17) as ayuda,amtau_cobranza.numeroCliente,(amtau_cobranza.numeroCliente)as solicitud,amtau_cobranza.cuotaNumero,amtau_cobranza.fechaCobranza from amtau_cobranza where fechaCobranza between $P{fechaDesde} and $P{fechaHasta} order by amtau_cobranza.numeroCliente]]>
 	</queryString>
-	<field name="(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
 	<field name="montoCobrado" class="java.lang.Float"/>
 	<field name="seguro" class="java.lang.Long"/>
 	<field name="sepelio" class="java.lang.Long"/>
 	<field name="ayuda" class="java.lang.Double"/>
 	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="solicitud" class="java.lang.Integer"/>
 	<field name="cuotaNumero" class="java.lang.String"/>
 	<field name="fechaCobranza" class="java.sql.Date"/>
 	<variable name="TotalCobrado" class="java.lang.Double" resetType="Column" calculation="Sum">
@@ -36,6 +37,10 @@
 	<variable name="sepelio" class="java.lang.Integer">
 		<variableExpression><![CDATA["12"]]></variableExpression>
 	</variable>
+	<variable name="Total General" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoCobrado}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -45,14 +50,14 @@
 	<pageHeader>
 		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="15" width="200" height="20"/>
+				<reportElement uuid="7537ce28-e0b8-45d5-b00d-f70eb9a82184" x="0" y="15" width="200" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Fecha Desde :"+$P{fechaDesde}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="15" width="200" height="20"/>
+				<reportElement uuid="d270a92c-4bf0-4ae8-8930-e72c4bfd2a5c" x="200" y="15" width="200" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA["Fecha Hasta :"+$P{fechaHasta}]]></textFieldExpression>
 			</textField>
@@ -61,37 +66,37 @@
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="2" width="100" height="20"/>
+				<reportElement uuid="81ee0693-6ef0-40f1-9df2-c0eea1fa52e5" x="0" y="2" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Socio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="149" y="2" width="51" height="20"/>
+				<reportElement uuid="e4bb2bb5-0ea2-4966-ab6e-68d5d454ebc9" x="149" y="2" width="51" height="20"/>
 				<textElement/>
 				<text><![CDATA[montoCobrado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="2" width="100" height="20"/>
+				<reportElement uuid="f9ca4a55-a374-48d9-baa7-7b35ca01574d" x="200" y="2" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[social]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="2" width="100" height="20"/>
+				<reportElement uuid="f171445f-30b8-4d62-98b5-92d11d7003af" x="300" y="2" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[sepelio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="2" width="100" height="20"/>
+				<reportElement uuid="6d5a600a-fc48-40e4-b08e-db0266c63026" x="400" y="2" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Cuota Salud]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="500" y="2" width="55" height="20"/>
+				<reportElement uuid="7812c0fd-ebb7-4d94-90dc-60ad676d4428" x="500" y="2" width="55" height="20"/>
 				<textElement/>
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="2" width="49" height="20"/>
+				<reportElement uuid="9a7f0937-26b5-48a4-a766-e0950f45c813" x="100" y="2" width="49" height="20"/>
 				<textElement/>
 				<text><![CDATA[Cuota]]></text>
 			</staticText>
@@ -99,87 +104,101 @@
 	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
-			<textField>
-				<reportElement x="36" y="0" width="64" height="20"/>
-				<textElement>
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroCliente=amtau_cobranza.numeroCliente)}]]></textFieldExpression>
-			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="149" y="2" width="51" height="20"/>
+				<reportElement uuid="64968a9d-7342-42e7-a195-79cd0cd6c451" x="149" y="2" width="51" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{montoCobrado}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="200" y="2" width="100" height="20"/>
+				<reportElement uuid="c8879d31-f68b-4fdf-acd1-91bf4586c412" x="200" y="2" width="100" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{seguro}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="300" y="2" width="100" height="20"/>
+				<reportElement uuid="8bf9c768-260a-4c1b-a891-1de0099cd3ae" x="300" y="2" width="100" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{sepelio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="400" y="2" width="100" height="20"/>
+				<reportElement uuid="8550c373-8f58-45a7-a80e-39ca70521f83" x="400" y="2" width="100" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ayuda}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="2" width="36" height="20"/>
-				<textElement>
-					<font size="6" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="500" y="2" width="55" height="20"/>
+				<reportElement uuid="a6d09ab6-db35-4d30-ac39-a09ea26bec1f" x="500" y="2" width="55" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaCobranza}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="2" width="49" height="20"/>
+				<reportElement uuid="0c40a579-ff25-4995-a429-9f65c6a49e9e" x="100" y="2" width="49" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cuotaNumero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7cfba464-5074-4dd6-bc70-97b1c09c69a3" x="0" y="2" width="19" height="20"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c4571d57-60e5-4040-ac60-8d34fd66297c" x="19" y="0" width="81" height="20"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="21" splitType="Stretch">
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="100" y="0" width="100" height="20"/>
+				<reportElement uuid="30d57a3b-1e7f-4f8a-845e-3e28f8d5bdf9" x="100" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{TotalCobrado}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="200" y="0" width="100" height="20"/>
+				<reportElement uuid="422956d5-6a7c-46ca-9eb5-f2e9fe448680" x="200" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{TotalSeguro}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="300" y="0" width="100" height="20"/>
+				<reportElement uuid="8f93d8a5-82ce-4170-9f88-a219922c9409" x="300" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{TotalSepelio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement x="400" y="0" width="100" height="20"/>
+				<reportElement uuid="06e3b845-b73e-4302-9028-566879dd8ed3" x="400" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{TotalSalud}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ad9b3dfc-b359-40d7-beb3-f16407c030d8" x="41" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{solicitud}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="455" y="0" width="100" height="20"/>
+				<reportElement uuid="1f8af0e7-1824-4398-8fd7-a30136fd9153" x="455" y="0" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
+	<lastPageFooter>
+		<band height="30">
+			<textField>
+				<reportElement uuid="acbfe957-7d8a-40db-9ff5-673fed5be109" x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{Total General}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
 	</summary>

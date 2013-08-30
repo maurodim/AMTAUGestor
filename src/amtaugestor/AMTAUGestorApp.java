@@ -44,12 +44,19 @@ public class AMTAUGestorApp extends SingleFrameApplication {
         Procedimientos pr=new ViejosDatos();
         Procedimientos ps=new Socios();
         ArrayList listado=new ArrayList();
-        pr.cargarPlanes();
-        listado=pr.listar();
+        //pr.cargarPlanes();
+        /*
+         * listado= genera la actualizacion del sistema anterior con el listado actual de socios
+         */
+        //listado=pr.listar();
         //ps.actualizarListado(listado);
         Procedimientos pc=new Cobradores();
-        listado=pc.listar();
-        pc.actualizarListado(listado);
+        /*
+         * idem anterior pero con los cobradores
+         */
+        
+        //listado=pc.listar();
+        //pc.actualizarListado(listado);
         //launch(AMTAUGestorApp.class, args);
         Inicio in=new Inicio();
         in.setVisible(true);

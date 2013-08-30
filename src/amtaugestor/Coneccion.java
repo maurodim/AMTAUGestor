@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class Coneccion {
     private String driver="com.mysql.jdbc.Driver";
-    private String baseDeDatos="jdbc:mysql://201.235.253.65:3306/maurodim_amtau";
-    private String usuario="maurodim";
-    private String pass="mau*2012";
+    private String baseDeDatos="jdbc:mysql://localhost:3306/amtau";//"jdbc:mysql://201.235.253.65:3306/maurodim_amtau";
+    private String usuario="root";//"maurodim";
+    private String pass="";//"mau*2012";
     private Connection cp;
 
     public String getBaseDeDatos() {
