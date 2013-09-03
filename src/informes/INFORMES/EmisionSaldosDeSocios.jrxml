@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0bb4319a-dff1-4eb4-b7a4-ecea96ce63ca">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select *,(select amtau_socios.apellido from amtau_socios where amtau_socios.numeroSolicitud=saldosfinal.numeroCliente and amtau_socios.tipoCondicion=0)as nombre from saldosfinal order by numeroCliente]]>
+	</queryString>
+	<field name="aCobrar" class="java.lang.Double"/>
+	<field name="numeroCliente" class="java.lang.Integer"/>
+	<field name="saldo" class="java.lang.Double"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="353378dd-5b76-45f3-869a-0c98fc9e5692" x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Listado de saldos de socios - AMTAU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c2591738-3b2e-46c1-bf33-d58afe26157c" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroCliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8dba0378-e584-49f9-9058-a0e0dc042ae1" x="100" y="0" width="144" height="20"/>
+				<textElement/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39ae9b4f-057c-4b43-83b0-f449eb2863a3" x="244" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[saldo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8398265c-a805-4d5d-b687-5c54923e6ae0" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="452eaa43-b791-4357-9e2a-e9e64919d16b" x="100" y="0" width="144" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="396c27cd-ea0d-4fa9-8c34-260bdb338e68" x="244" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{saldo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="23" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="feb149bc-5c8f-4f54-81c1-03adc361b145" x="435" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0c2bba81-b3f0-4f92-91c4-a9bc142ec61e" x="515" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
