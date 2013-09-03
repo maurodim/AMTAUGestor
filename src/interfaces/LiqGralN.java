@@ -9,6 +9,8 @@ import amtaugestor.InLiqGral;
 import amtaugestor.LiqGral;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
@@ -259,8 +261,13 @@ public class LiqGralN extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int cuotaMes=jComboBox1.getSelectedIndex();
+        Calendar c1=Calendar.getInstance();
+	Calendar c2=new GregorianCalendar();
+	String dia=Integer.toString(c2.get(Calendar.DAY_OF_MONTH));
+	String mes=Integer.toString(c2.get(Calendar.MONTH));
+	String ano=Integer.toString(c2.get(Calendar.YEAR));
         cuotaMes++;
-        String cuota=cuotaMes+"/2012";
+        String cuota=cuotaMes+"/"+ano;
         Procesos pr=new Procesos();
         
         try {
