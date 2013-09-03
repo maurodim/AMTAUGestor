@@ -32,11 +32,12 @@ public class EmisionDeRecibosDePago extends Thread{
         try {
             Date fecha=new Date();
    String fechaTitulo=String.valueOf(fecha);
+   String cuotaN=this.cuotaNumero.replace("/"," - ");
     Map numeroCuota=new HashMap();
 	System.out.println(this.cuotaNumero);
 	   numeroCuota.put("cuotaN",this.cuotaNumero);
    String master=System.getProperty("user.dir")+"//src//informes//recibosDePago.jasper";
-    String destino="C://AMTAUgestor//Recibos De Pago.pdf";
+    String destino="C://AMTAUgestor//"+cuotaN+" - Recibos De Pago.pdf";
    Coneccion con=new Coneccion();
             Class.forName(con.getDriver());
             Connection cnn=DriverManager.getConnection(con.getBaseDeDatos(),con.getUsuario(),con.getPass());

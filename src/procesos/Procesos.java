@@ -80,7 +80,7 @@ public class Procesos {
        ArrayList listado=new ArrayList();
        Connection cnn=con.getCp();
        Statement st=cnn.createStatement();
-       String sql="select * from amtau_socios";
+       String sql="select * from amtau_socios where habilitado=0";
        st.execute(sql);
        ResultSet rs=st.getResultSet();
        while(rs.next()){
