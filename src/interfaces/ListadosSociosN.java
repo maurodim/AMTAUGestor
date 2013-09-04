@@ -5,16 +5,31 @@
 package interfaces;
 
 import amtaugestor.Cobradores;
+import amtaugestor.Coneccion;
+import amtaugestor.EmisionDeRecibosDePago;
 import amtaugestor.InLiqGral;
 import amtaugestor.ListadosSocios;
 import amtaugestor.Socios;
+import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 import procesos.Procesos;
 
 /**
@@ -76,6 +91,11 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
         });
 
         jButton5.setText("Listado de Saldos de Socios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -304,6 +324,46 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
             Logger.getLogger(ListadosSocios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            Date fecha=new Date();
+   String fechaTitulo=String.valueOf(fecha);
+   //String cuotaN=this.cuotaNumero.replace("/"," - ");
+    Map numeroCuota=new HashMap();
+	//System.out.println(this.cuotaNumero);
+	  // numeroCuota.put("cuotaN",this.cuotaNumero);
+   String master=System.getProperty("user.dir")+"//src//informes//INFORMES//EmisionSaldosDeSocios.jasper";
+    String destino="C://AMTAUgestor// Listado de saldos.pdf";
+   Coneccion con=new Coneccion();
+            Class.forName(con.getDriver());
+            Connection cnn=DriverManager.getConnection(con.getBaseDeDatos(),con.getUsuario(),con.getPass());
+            JasperReport reporte=(JasperReport) JRLoader.loadObject(master);
+            JasperPrint jasperPrint=JasperFillManager.fillReport(reporte, numeroCuota,cnn);
+            JRExporter exporter=new JRPdfExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint);
+            exporter.setParameter(JRExporterParameter.OUTPUT_FILE,new java.io.File(destino));
+            exporter.exportReport();
+            //cnn.close();
+            
+            File f=new File(destino);
+            if(f.exists()){
+                try {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+destino);
+                } catch (IOException ex) {
+                    Logger.getLogger(EmisionDeRecibosDePago.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    
+            }
+        } catch (JRException ex) {
+            Logger.getLogger(EmisionDeRecibosDePago.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmisionDeRecibosDePago.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmisionDeRecibosDePago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
