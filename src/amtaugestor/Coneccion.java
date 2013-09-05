@@ -44,7 +44,7 @@ public class Coneccion {
                     dataSource.setUser("root");
                     dataSource.setDatabaseName("amtau");
                     dataSource.setPassword("");
-                    dataSource.setServerName("localhost");
+                    dataSource.setServerName("localhost:82");
                     cp=dataSource.getConnection();
                  }catch(Exception ex){
                     
