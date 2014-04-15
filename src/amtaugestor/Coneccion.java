@@ -6,6 +6,7 @@ package amtaugestor;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -14,9 +15,9 @@ import java.sql.SQLException;
  */
 public class Coneccion {
     private String driver="com.mysql.jdbc.Driver";
-    private String baseDeDatos="jdbc:mysql://localhost:3306/amtau";//"jdbc:mysql://201.235.253.65:3306/maurodim_amtau";
-    private String usuario="root";//"maurodim";
-    private String pass="";//"mau*2012";
+    private String baseDeDatos="jdbc:mysql://201.235.253.65:3306/maurodim_amtau";
+    private String usuario="maurodim";
+    private String pass="mau*2012";
     private Connection cp;
 
     public String getBaseDeDatos() {
@@ -36,16 +37,18 @@ public class Coneccion {
     }
 
     public Connection getCp() throws ClassNotFoundException, SQLException {
-        //Class.forName(driver);
-        //Connection cp=DriverManager.getConnection(baseDeDatos,usuario,pass);
-        MysqlDataSource dataSource=new MysqlDataSource();
+        Class.forName(driver);
+        Connection cp=DriverManager.getConnection(baseDeDatos,usuario,pass);
+        //MysqlDataSource dataSource=new MysqlDataSource();
 		try{
 			//Class.forName(driver1).newInstance();
-                    dataSource.setUser("root");
-                    dataSource.setDatabaseName("amtau");
-                    dataSource.setPassword("");
-                    dataSource.setServerName("localhost:82");
-                    cp=dataSource.getConnection();
+                    /*
+                        dataSource.setUser("maurodim");
+                    dataSource.setDatabaseName("maurodim_amtau");
+                    dataSource.setPassword("mau*2012");
+                    dataSource.setServerName("201.235.253.65:3306");
+                    */
+                    //cp=dataSource.getConnection();
                  }catch(Exception ex){
                     
                 String cod1=String.valueOf(ex);

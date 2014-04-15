@@ -99,7 +99,7 @@ public class Procesos {
        Iterator il=listado.listIterator();
        while(il.hasNext()){
            soc=(Socios)il.next();
-           sql="insert into amtau_cobranza (numeroCobrador,numeroCliente,numeroDePlan,cuotaNumero,montoACobrar,tipoMovimiento) values("+soc.getNumeroCobrador()+","+soc.getNumeroSolicitud()+","+soc.getNumeroDePlan()+",'"+cuotaNumero+"',"+soc.getMontoACobrar()+",0)";
+           sql="insert into amtau_cobranza (numeroCobrador,numeroCliente,numeroDePlan,cuotaNumero,montoACobrar,montoCobrado,tipoMovimiento) values("+soc.getNumeroCobrador()+","+soc.getNumeroSolicitud()+","+soc.getNumeroDePlan()+",'"+cuotaNumero+"',"+soc.getMontoACobrar()+","+soc.getMontoACobrar()+",1)";
            st.executeUpdate(sql);
            System.out.println(sql);
            

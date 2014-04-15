@@ -13,37 +13,37 @@
 	<field name="tipoCondicion" class="java.lang.Integer"/>
 	<field name="montoACobrar" class="java.lang.Float"/>
 	<detail>
-		<band height="63" splitType="Stretch">
+		<band height="80" splitType="Stretch">
 			<textField>
-				<reportElement uuid="43e5b8e6-ab8b-4e7d-8fb2-8acdb05576de" x="0" y="0" width="59" height="12"/>
+				<reportElement uuid="43e5b8e6-ab8b-4e7d-8fb2-8acdb05576de" x="0" y="27" width="59" height="9"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Socios Nº:"+$F{numeroSolicitud}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="fd7d653f-68fe-4ee4-8ce9-268387109b3b" x="0" y="12" width="100" height="20"/>
+				<reportElement uuid="fd7d653f-68fe-4ee4-8ce9-268387109b3b" x="0" y="36" width="100" height="20"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Apellido y Nombre :"+$F{apellido}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="465b9591-460a-4061-a444-37a945ae4c59" x="0" y="32" width="100" height="12"/>
+				<reportElement uuid="465b9591-460a-4061-a444-37a945ae4c59" x="0" y="56" width="100" height="12"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Monto : "+$F{montoACobrar}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0adc7cd3-d463-4bff-ae03-f67b4bd5d087" x="0" y="44" width="100" height="12"/>
+				<reportElement uuid="0adc7cd3-d463-4bff-ae03-f67b4bd5d087" x="0" y="68" width="100" height="12"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cuota :"+$P{cuotaN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="bfddcc8d-292d-422f-8a43-4449642587ab" x="59" y="0" width="28" height="12"/>
+				<reportElement uuid="bfddcc8d-292d-422f-8a43-4449642587ab" x="59" y="27" width="28" height="9"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>

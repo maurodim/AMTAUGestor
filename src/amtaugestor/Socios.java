@@ -78,7 +78,17 @@ public class Socios implements Procedimientos{
     private Integer liquidada;
     private Date fechaLiquidacion;
     private Integer numeroLiquidacion;
+    private Double saldo;
 
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+    
     public String getApellido() {
         return apellido;
     }
@@ -560,7 +570,34 @@ public class Socios implements Procedimientos{
     }
 
     public ArrayList listar() {
-        throw new UnsupportedOperationException("Not supported yet.");
+         ArrayList listado=new ArrayList();
+        try {
+           
+            String sql="select numeroCliente,numeroSolicitud,apellido as nombre,saldo from saldosfinal order by numeroSolicitud";
+            Coneccion con=new Coneccion();
+            Class.forName(con.getDriver());
+            Connection cnn=DriverManager.getConnection(con.getBaseDeDatos(),con.getUsuario(),con.getPass());
+            Statement s=cnn.createStatement();
+            s.executeQuery(sql);
+            ResultSet rs=s.getResultSet();
+            while(rs.next()){
+                Socios socio=new Socios();
+                socio.setApellido(rs.getString("nombre"));
+                socio.setSaldo(rs.getDouble("saldo"));
+                socio.setNumeroCliente(rs.getInt("numeroCliente"));
+                socio.setNumeroSolicitud(String.valueOf(rs.getInt("numeroSolicitud")));
+                listado.add(socio);
+            }
+            rs.close();
+            s.close();
+            cnn.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Socios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Socios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return listado;
     }
 
     public void actualizarListado(ArrayList listado) {
@@ -633,4 +670,15 @@ public class Socios implements Procedimientos{
     public void cargarPlanes() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    public void movimientoDeAjusteDeSaldo(String sentencia) throws ClassNotFoundException, SQLException{
+        //String sql="insert into amtau_cobranza (numeroCobrador,numeroCliente,numeroDePlan,cuotaNumero,montoACobrar,tipoMovimiento) values("+soc.getNumeroCobrador()+","+soc.getNumeroSolicitud()+","+soc.getNumeroDePlan()+",'"+cuotaNumero+"',"+soc.getMontoACobrar()+",1)";
+        Coneccion con=new Coneccion();
+       ArrayList listado=new ArrayList();
+       Connection cnn=con.getCp();
+       Statement st=cnn.createStatement();
+       st.executeUpdate(sentencia);
+       st.close();
+       cnn.close();
+    }
+    
 }

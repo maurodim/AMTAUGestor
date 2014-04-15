@@ -8,7 +8,9 @@ import amtaugestor.Cobradores;
 import amtaugestor.Coneccion;
 import amtaugestor.EmisionDeRecibosDePago;
 import amtaugestor.InLiqGral;
+import amtaugestor.Inicio;
 import amtaugestor.ListadosSocios;
+import amtaugestor.SaldosSocios;
 import amtaugestor.Socios;
 import java.io.File;
 import java.io.IOException;
@@ -60,6 +62,7 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -97,6 +100,13 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton6.setText("Ajustes de Saldos de Socios");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -108,7 +118,8 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -124,6 +135,8 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
                 .addComponent(jButton2)
                 .addGap(82, 82, 82)
                 .addComponent(jButton5)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -247,7 +260,7 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -333,8 +346,9 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
     Map numeroCuota=new HashMap();
 	//System.out.println(this.cuotaNumero);
 	  // numeroCuota.put("cuotaN",this.cuotaNumero);
-   String master=System.getProperty("user.dir")+"//src//informes//INFORMES//EmisionSaldosDeSocios.jasper";
+   String master=System.getProperty("user.dir")+"\\src\\informes\\INFORMES\\EmisionSaldosDeSocios.jasper";
     String destino="C://AMTAUgestor// Listado de saldos.pdf";
+    System.out.println("nombre "+master);
    Coneccion con=new Coneccion();
             Class.forName(con.getDriver());
             Connection cnn=DriverManager.getConnection(con.getBaseDeDatos(),con.getUsuario(),con.getPass());
@@ -365,12 +379,20 @@ public class ListadosSociosN extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        SaldosSocios saldos=new SaldosSocios();
+        Inicio.jDesktopPane1.add(saldos);
+        saldos.toFront();
+        saldos.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
